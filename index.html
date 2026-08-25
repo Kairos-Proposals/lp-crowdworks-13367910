@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Proposal — LucidTrading様 Shopify LP実装案件</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F8FA;
+    --surface:#FFFFFF;
+    --ink:#101E36;
+    --ink-soft:#4A5772;
+    --teal:#12B3A6;
+    --amber:#E8A33D;
+    --violet:#5C3A9E;
+    --line:#DCE2E8;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Sora', 'Zen Kaku Gothic New', sans-serif;
+    color:var(--ink);
+    letter-spacing:0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  section{
+    padding:96px 0;
+    position:relative;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:120px 0 100px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(18,179,166,0.18), transparent 45%),
+      radial-gradient(circle at 90% 10%, rgba(92,58,158,0.16), transparent 40%),
+      radial-gradient(circle at 70% 90%, rgba(232,163,61,0.16), transparent 45%),
+      var(--surface);
+  }
+
+  .hero::before{
+    content:"{{ }}";
+    position:absolute;
+    top:-40px;
+    right:-30px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:260px;
+    font-weight:700;
+    color:rgba(18,179,166,0.07);
+    line-height:1;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .hero .wrap{position:relative;z-index:1;}
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:#fff;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    padding:8px 16px;
+    border-radius:100px;
+    margin-bottom:32px;
+  }
+  .badge span.dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 3px rgba(18,179,166,0.25);
+  }
+
+  .hero h1{
+    font-size:clamp(32px, 5.2vw, 58px);
+    font-weight:800;
+    line-height:1.35;
+    max-width:820px;
+  }
+  .hero h1 .liquid-tag{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--teal);
+    font-weight:700;
+  }
+  .hero h1 .amber-tag{
+    color:var(--amber);
+  }
+
+  .hero p.lead{
+    margin-top:28px;
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:600px;
+  }
+
+  .hero .from{
+    margin-top:40px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .from .k-mark{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--violet), var(--teal));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-family:'Sora',sans-serif;
+    font-size:18px;
+  }
+  .from .txt{font-size:13px;color:var(--ink-soft);}
+  .from .txt strong{display:block;color:var(--ink);font-size:15px;}
+
+  /* ===== SECTION HEADERS ===== */
+  .sec-head{
+    margin-bottom:48px;
+  }
+  .sec-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--teal);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    display:block;
+  }
+  .sec-head h2{
+    font-size:clamp(24px,3.4vw,34px);
+    font-weight:700;
+  }
+
+  /* ===== UNDERSTANDING ===== */
+  .understand{
+    background:var(--surface);
+  }
+  .u-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .u-quote{
+    background:linear-gradient(160deg, #101E36, #1B3358);
+    color:#fff;
+    padding:40px;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .u-quote::after{
+    content:"";
+    position:absolute;
+    width:200px;height:200px;
+    background:radial-gradient(circle, rgba(232,163,61,0.35), transparent 70%);
+    top:-60px;right:-60px;
+  }
+  .u-quote p{
+    font-size:18px;
+    line-height:1.9;
+    position:relative;
+    z-index:1;
+  }
+  .u-quote .sign{
+    margin-top:24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:#8FE3DB;
+  }
+
+  .u-list{
+    list-style:none;
+  }
+  .u-list li{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    color:var(--ink-soft);
+  }
+  .u-list li:last-child{border-bottom:none;}
+  .u-list .num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--amber);
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .u-list strong{color:var(--ink);}
+
+  /* ===== VALUE CARDS ===== */
+  .value{
+    background:var(--bg);
+  }
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:32px 28px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    position:relative;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(16,30,54,0.08);
+  }
+  .card .icon{
+    width:46px;height:46px;
+    border-radius:12px;
+    margin-bottom:20px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    color:#fff;
+    font-size:15px;
+  }
+  .card:nth-child(1) .icon{background:linear-gradient(135deg,#12B3A6,#0C7F76);}
+  .card:nth-child(2) .icon{background:linear-gradient(135deg,#E8A33D,#C97B1E);}
+  .card:nth-child(3) .icon{background:linear-gradient(135deg,#5C3A9E,#3D2570);}
+  .card:nth-child(4) .icon{background:linear-gradient(135deg,#12B3A6,#5C3A9E);}
+  .card:nth-child(5) .icon{background:linear-gradient(135deg,#E8A33D,#5C3A9E);}
+  .card h3{
+    font-size:17px;
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .card p{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  /* ===== SCHEDULE ===== */
+  .schedule{
+    background:var(--surface);
+  }
+  .snippet{
+    background:#0E1B30;
+    color:#B9E7E1;
+    border-radius:14px;
+    padding:24px 28px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    line-height:1.9;
+    margin-bottom:56px;
+    overflow-x:auto;
+  }
+  .snippet .kw{color:#E8A33D;}
+  .snippet .tag{color:#12B3A6;}
+  .snippet .str{color:#A0D8FF;}
+  .snippet .cmt{color:#5C7A92;}
+
+  .timeline{
+    position:relative;
+    padding-left:36px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:9px;top:6px;bottom:6px;
+    width:2px;
+    background:linear-gradient(to bottom, var(--teal), var(--violet), var(--amber));
+    border-radius:2px;
+  }
+  .t-item{
+    position:relative;
+    padding-bottom:36px;
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-36px;top:2px;
+    width:20px;height:20px;
+    border-radius:50%;
+    background:var(--surface);
+    border:3px solid var(--teal);
+  }
+  .t-item .date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    letter-spacing:0.05em;
+    margin-bottom:6px;
+    display:block;
+  }
+  .t-item h4{
+    font-size:16px;
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  .t-item p{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  /* ===== CLOSING ===== */
+  .closing{
+    background:linear-gradient(150deg,#101E36 0%, #1B3358 55%, #2E2159 100%);
+    color:#fff;
+    text-align:center;
+    border-radius:0;
+  }
+  .closing .wrap{position:relative;z-index:1;}
+  .closing h2{
+    color:#fff;
+    font-size:clamp(26px,4vw,40px);
+    margin-bottom:18px;
+  }
+  .closing p{
+    color:rgba(255,255,255,0.75);
+    max-width:560px;
+    margin:0 auto 40px;
+    font-size:15px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg, var(--teal), #0C7F76);
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    padding:18px 40px;
+    border-radius:100px;
+    text-decoration:none;
+    box-shadow:0 20px 40px rgba(18,179,166,0.35);
+    transition:transform 0.2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-3px);}
+
+  .meta-row{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:48px;
+    flex-wrap:wrap;
+  }
+  .meta-row div{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:rgba(255,255,255,0.55);
+  }
+  .meta-row div strong{
+    display:block;
+    color:#fff;
+    font-family:'Sora',sans-serif;
+    font-size:18px;
+    margin-bottom:4px;
+  }
+
+  footer{
+    background:#0E1626;
+    color:rgba(255,255,255,0.4);
+    text-align:center;
+    padding:28px 0;
+    font-size:12px;
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  @media (max-width:860px){
+    .u-grid{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    section{padding:64px 0;}
+    .card-grid{grid-template-columns:1fr;}
+    .hero{padding:90px 0 70px;}
+    .hero::before{font-size:160px;top:-10px;}
+    .meta-row{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge"><span class="dot"></span>PROPOSAL — Kairos → LucidTrading様</span>
+    <h1>
+      <span class="liquid-tag">{{&nbsp;design&nbsp;}}</span> を、<br>
+      締切までに<span class="amber-tag">寸分の狂いなく</span>流し込む。
+    </h1>
+    <p class="lead">
+      支給デザインをShopify / Liquidへ正確に実装する仕事は、<br>
+      「速さ」と「精度」の両立が問われます。Kairosは、その両方を約束します。
+    </p>
+    <div class="from">
+      <div class="k-mark">K</div>
+      <div class="txt">
+        <strong>Kairos（カイロス）</strong>
+        Web制作・システム開発チームより
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="understand">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">01 / Understanding</span>
+      <h2>募集内容を拝見して</h2>
+    </div>
+    <div class="u-grid">
+      <div class="u-quote">
+        <p>
+          今回はデザイン・画像が支給済みで、必要なのは「正確なLiquid実装」。<br>
+          8/21という短い納期の中で、表示崩れやレスポンシブの粗が残ることは
+          そのままLPの成果に直結します。単発の作業ではなく、その先の
+          継続的なShopify案件を見据えたパートナー選びだと理解しています。
+        </p>
+        <div class="sign">// read from the brief, LucidTrading様</div>
+      </div>
+      <ul class="u-list">
+        <li><span class="num">01</span><span><strong>デザインは確定済み。</strong>実装の正確さとスピードが最優先。</span></li>
+        <li><span class="num">02</span><span><strong>8/21納品というタイトな期日。</strong>着手の早さが選定基準。</span></li>
+        <li><span class="num">03</span><span><strong>追従バナー・ボタンアニメーション</strong>など細部の実装要件がある。</span></li>
+        <li><span class="num">04</span><span><strong>PC/SPの表示崩れゼロ</strong>が納品条件として重要視されている。</span></li>
+        <li><span class="num">05</span><span><strong>今回限りでなく、</strong>今後のShopify案件も見据えた関係構築を希望。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="value">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">02 / What Kairos Offers</span>
+      <h2>Kairosが提供できる価値</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">&lt;/&gt;</div>
+        <h3>Liquid実装の精度</h3>
+        <p>支給デザインをピクセル単位で再現。既存Shopifyテーマへの干渉を最小限に抑え、安全に組み込みます。</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>タイトな納期への対応力</h3>
+        <p>8/21納品を最優先事項として設計。着手可能日の即答、着手後の迅速な実装サイクルで対応します。</p>
+      </div>
+      <div class="card">
+        <div class="icon">◎</div>
+        <h3>抜け漏れないレスポンシブ</h3>
+        <p>PC/SP双方の表示、ボタンアニメーション、画面下部の追従バナーまで一項目ずつ実機検証します。</p>
+      </div>
+      <div class="card">
+        <div class="icon">☑</div>
+        <h3>こまめな進捗共有</h3>
+        <p>チャットで日次〜都度の進捗報告。疑問点はその場で確認し、手戻りとすれ違いを未然に防ぎます。</p>
+      </div>
+      <div class="card">
+        <div class="icon">↻</div>
+        <h3>継続を前提にした設計</h3>
+        <p>今後のShopify LP量産を見据え、再利用しやすいコード構成・命名規則で実装。次回以降の速度も上がります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="schedule">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-eyebrow">03 / Process</span>
+      <h2>進め方とスケジュールイメージ</h2>
+    </div>
+
+    <div class="snippet">
+<span class="cmt">{% comment %} LucidTrading LP – section structure {% endcomment %}</span><br>
+<span class="tag">{% if</span> section.settings.design_ready <span class="tag">%}</span><br>
+&nbsp;&nbsp;<span class="kw">render</span> <span class="str">'lp-hero'</span>, sticky_banner: <span class="kw">true</span><br>
+&nbsp;&nbsp;<span class="kw">render</span> <span class="str">'lp-cta'</span>, responsive: <span class="kw">true</span><br>
+<span class="tag">{% endif %}</span>
+    </div>
+
+    <div class="timeline">
+      <div class="t-item">
+        <span class="date">DAY 0 — 着手日</span>
+        <h4>デザイン・素材の確認、実装方針の共有</h4>
+        <p>支給データ受領後、即日でヒアリングと構成確認を実施します。</p>
+      </div>
+      <div class="t-item">
+        <span class="date">DAY 1-2</span>
+        <h4>Liquidコーディング（LP本体実装）</h4>
+        <p>既存Shopifyテーマに沿った形でLPセクションを構築します。</p>
+      </div>
+      <div class="t-item">
+        <span class="date">DAY 3</span>
+        <h4>レスポンシブ調整・アニメーション・追従バナー実装</h4>
+        <p>PC/SPそれぞれで崩れがないか、ボタンの挙動まで確認します。</p>
+      </div>
+      <div class="t-item">
+        <span class="date">DAY 4</span>
+        <h4>社内チェック→初稿共有</h4>
+        <p>公開前の実機確認を経て、確認用URLを共有します。</p>
+      </div>
+      <div class="t-item">
+        <span class="date">〜 8/21</span>
+        <h4>修正対応・最終納品</h4>
+        <p>フィードバックを反映し、期日内に確実に納品します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="sec-eyebrow" style="color:#8FE3DB;">04 / Next Action</span>
+    <h2>まずは一度、お話しませんか？</h2>
+    <p>
+      納期がタイトな案件ほど、最初の一手が肝心です。
+      稼働状況・着手可能日・過去のShopify実装実績、すぐにご共有できます。
+      応募前のご質問も歓迎です。
+    </p>
+    <a href="#" class="cta-btn">Kairosに相談する →</a>
+
+    <div class="meta-row">
+      <div><strong>即日〜</strong>着手可能</div>
+      <div><strong>8/21</strong>納期対応</div>
+      <div><strong>継続体制</strong>構築済み</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Kairos — Web制作・システム開発チーム / Proposal for LucidTrading
+</footer>
+
+</body>
+</html>
